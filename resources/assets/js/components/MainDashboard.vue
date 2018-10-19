@@ -25,7 +25,7 @@
           <h1 class="page-header">Dashboard</h1>
           <div class="row placeholders">
           </div>
-          <h2 class="sub-header">Section title</h2>
+          <h2 class="sub-header">Announcement</h2>
         </div>
       </div>
     </div>

@@ -43693,7 +43693,7 @@ var staticRenderFns = [
             _vm._v(" "),
             _c("div", { staticClass: "row placeholders" }),
             _vm._v(" "),
-            _c("h2", { staticClass: "sub-header" }, [_vm._v("Section title")])
+            _c("h2", { staticClass: "sub-header" }, [_vm._v("Announcement")])
           ]
         )
       ])
