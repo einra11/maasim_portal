@@ -43618,85 +43618,14 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", [
-      _c("div", { staticClass: "row" }, [
-        _c(
-          "div",
-          {
-            staticClass: "col-sm-5 col-md-2 sidebar",
-            staticStyle: { "background-color": "#051C3B" }
-          },
-          [
-            _c("ul", { staticClass: "nav nav-sidebar" }, [
-              _c("li", { staticClass: "active" }, [
-                _c("a", { attrs: { href: "#" } }, [_vm._v("Overview")])
-              ]),
-              _vm._v(" "),
-              _c("li", [
-                _c("a", { attrs: { href: "#" } }, [_vm._v("Reports")])
-              ]),
-              _vm._v(" "),
-              _c("li", [
-                _c("a", { attrs: { href: "#" } }, [_vm._v("Analytics")])
-              ]),
-              _vm._v(" "),
-              _c("li", [_c("a", { attrs: { href: "#" } }, [_vm._v("Export")])])
-            ]),
-            _vm._v(" "),
-            _c("ul", { staticClass: "nav nav-sidebar" }, [
-              _c("li", [
-                _c("a", { attrs: { href: "" } }, [_vm._v("Nav item")])
-              ]),
-              _vm._v(" "),
-              _c("li", [
-                _c("a", { attrs: { href: "" } }, [_vm._v("Nav item again")])
-              ]),
-              _vm._v(" "),
-              _c("li", [
-                _c("a", { attrs: { href: "" } }, [_vm._v("One more nav")])
-              ]),
-              _vm._v(" "),
-              _c("li", [
-                _c("a", { attrs: { href: "" } }, [_vm._v("Another nav item")])
-              ]),
-              _vm._v(" "),
-              _c("li", [
-                _c("a", { attrs: { href: "" } }, [_vm._v("More navigation")])
-              ])
-            ]),
-            _vm._v(" "),
-            _c("ul", { staticClass: "nav nav-sidebar" }, [
-              _c("li", [
-                _c("a", { attrs: { href: "" } }, [_vm._v("Nav item again")])
-              ]),
-              _vm._v(" "),
-              _c("li", [
-                _c("a", { attrs: { href: "" } }, [_vm._v("One more nav")])
-              ]),
-              _vm._v(" "),
-              _c("li", [
-                _c("a", { attrs: { href: "" } }, [_vm._v("Another nav item")])
-              ])
-            ])
-          ]
-        ),
-        _vm._v(" "),
-        _c(
-          "div",
-          {
-            staticClass:
-              "col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-0 main",
-            staticStyle: { "background-color": "#E5EFEE" }
-          },
-          [
-            _c("h1", { staticClass: "page-header" }, [_vm._v("Dashboard")]),
-            _vm._v(" "),
-            _c("div", { staticClass: "row placeholders" }),
-            _vm._v(" "),
-            _c("h2", { staticClass: "sub-header" }, [_vm._v("Announcement")])
-          ]
-        )
-      ])
+    return _c("div", { staticClass: "panel panel-primary" }, [
+      _c("div", { staticClass: "panel-heading" }, [
+        _c("h1", [_vm._v("Dashboard")])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "panel-body" }),
+      _vm._v(" "),
+      _c("div", { staticClass: "panel-footer" }, [_vm._v("Panel footer")])
     ])
   }
 ]

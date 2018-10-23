@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.appWithCk')
 
 @section('content')
     <h1>Create Announcement</h1>

@@ -13,10 +13,14 @@
             {!!Form::close()!!}
         @endif
     @endif
-      <h2 class="featurette-heading">{{$post->annc_title}}</h2>
-      <small>Posted on {{$post->created_at}}</small>
-      <hr class="featurette-divider">
-      <p class="lead">{!!$post->annc_content!!}</p>
+    <div class="panel panel-default">
+            <h2 class="panel-heading">{{$post->annc_title}}</h2>
+            <div class="panel-body">
+                    <p class="lead text-justify">{!!$post->annc_content!!}</p>
+                    <hr class="featurette-divider">
+                    <small>Posted on {{$post->created_at}}</small>
+            </div>
+    </div>
     </div>
     <div class="col-md-5">
       <img style="width:100%" class="featurette-image img-fluid mx-auto" src="/storage/cover_images/{{$post->cover_image}}" alt="Generic placeholder image">

@@ -36,8 +36,10 @@ Route::get('/services', 'PagesController@services');
 
 Route::resource('announcements', 'PostsController');
 
+Route::resource('requests', 'RequestsController');
 
 
 Auth::routes();
 
 Route::get('/dashboard', 'DashboardController@index');
+

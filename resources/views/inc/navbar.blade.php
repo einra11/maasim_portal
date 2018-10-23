@@ -24,7 +24,7 @@
             @if (Auth::guest())
             <ul class="nav navbar-nav">
                 <li><a href="/">Home</a></li>
-                <li><a href="/services">Public Assistance Center</a></li>
+                <li><a href="/requests">Public Assistance Center</a></li>
                 <li><a href="/about">About</a></li>
                 <li><a href="/announcements">Anouncement</a></li>
               </ul>
