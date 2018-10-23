@@ -20,6 +20,16 @@ Vue.component('request-app', require('./components/Request.vue'));
 Vue.component('side-nav', require('./components/Sidenav.vue'));
 Vue.component('main-app', require('./components/MainDashboard.vue'));
 
+// import Vue from 'vue';
+// import Vuetify from 'vuetify'
+
+// Vue.use(Vuetify)
+
+import fullcalendar from 'vue-fullcalendar'
+
+Vue.component('full-calendar', fullcalendar)
+
+
 const app = new Vue({
     el: '#app'
 });
