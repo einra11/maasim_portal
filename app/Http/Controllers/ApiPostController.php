@@ -17,7 +17,7 @@ class ApiPostController extends Controller
     public function index()
     {
         //Get Articles
-        $announcements = Post::paginate(15);
+        $announcements = Post::orderBy('created_at', 'desc')->paginate(3);
 
         //return collection of announcements as a resource
         return ApiPostResource::collection($announcements);

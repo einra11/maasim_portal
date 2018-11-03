@@ -37,6 +37,8 @@ Route::get('/services', 'PagesController@services');
 Route::resource('announcements', 'PostsController');
 
 Route::resource('requests', 'RequestsController');
+Route::resource('apirequests', 'ApiRequestController');
+Route::resource('events', 'EventController');
 
 
 Auth::routes();

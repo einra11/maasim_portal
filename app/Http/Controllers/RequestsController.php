@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Http\Requests;
 use Illuminate\Http\Request;
 use App\Request as RequestGuest;
 
@@ -26,7 +26,6 @@ class RequestsController extends Controller
     public function create()
     {
         //
-        return view('requests.create');
     }
 
     /**

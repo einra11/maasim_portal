@@ -15,18 +15,18 @@ window.Vue = require('vue');
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-Vue.component('example', require('./components/Example.vue'));
-Vue.component('request-app', require('./components/Request.vue'));
+Vue.component('calendar-app', require('./components/Calendar.vue')); 
+Vue.component('clock-app', require('./components/Clock.vue'));
+Vue.component('about-app', require('./components/About.vue'));
 Vue.component('side-nav', require('./components/Sidenav.vue'));
 Vue.component('main-app', require('./components/MainDashboard.vue'));
 
-// import Vue from 'vue';
-// import Vuetify from 'vuetify'
 
-// Vue.use(Vuetify)
+// import Vue from 'vue';
+import Vuetify from 'vuetify'
+Vue.use(Vuetify)
 
 import fullcalendar from 'vue-fullcalendar'
-
 Vue.component('full-calendar', fullcalendar)
 
 

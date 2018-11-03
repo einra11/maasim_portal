@@ -45,6 +45,7 @@
                             <li><a href="/dashboard">Dashboard</a></li>
                             <li><a href="/announcements/create">Announcement <sup><span class="glyphicon glyphicon-plus"></span></sup></a></li>
                             <li><a href="/announcements">Anouncements</a></li>
+                            <li><a href="/register">Register</a></li>
                             <li>
                                 <a href="{{ route('logout') }}"
                                     onclick="event.preventDefault();

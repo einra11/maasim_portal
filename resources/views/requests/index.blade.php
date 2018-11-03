@@ -50,19 +50,19 @@
                                                         <br>
                                                         <div class="form-group col-md-3">
                                                                 {{Form::label('request', 'Barangay Certificate')}}
-                                                                {{Form::checkbox('requestP[]', 'BCert')}}
+                                                                {{Form::checkbox('requestP[]', 'Barangay Certificate')}}
                                                         </div>
                                                         <div class="form-group col-md-3">
                                                                 {{Form::label('request', 'Barangay Clearance')}}
-                                                                {{Form::checkbox('requestP[]', 'BCl')}}
+                                                                {{Form::checkbox('requestP[]', 'Barangay Clearance')}}
                                                         </div>
                                                         <div class="form-group col-md-3">
                                                                 {{Form::label('request', 'Notice of Hearing')}}
-                                                                {{Form::checkbox('requestP[]', 'NoH')}}
+                                                                {{Form::checkbox('requestP[]', 'Notice of Hearing')}}
                                                         </div>
                                                         <div class="form-group col-md-3">
                                                                 {{Form::label('request', 'IST Summons')}}
-                                                                {{Form::checkbox('requestP[]', 'IST')}}
+                                                                {{Form::checkbox('requestP[]', 'IST Summons')}}
                                                         </div>
                                                 </div>
                                                     <div class="form-group col-md-12">
