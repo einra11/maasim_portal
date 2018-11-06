@@ -16,8 +16,8 @@ class ApiRequestController extends Controller
     public function index()
     {
         //
-        $RequestGuest = RequestGuest::orderBy('created_at','desc')->get();
-        return RequestResource::collection($RequestGuest);
+        $request = RequestGuest::orderBy('created_at','desc')->get();
+        return RequestResource::collection($request);
     }
 
     /**
@@ -32,13 +32,13 @@ class ApiRequestController extends Controller
         $requestapi = $request->isMethod('put') ? RequestGuest::findOrFail($request->id) : new RequestGuest;
 
         $requestapi->id = $request->input('id');
-        $requestapi->title = $request->input('title');
-        $requestapi->event_description = $request->input('event_description');
-        $requestapi->start = $request->input('start');
-        $requestapi->end = $request->input('end');
+        $requestapi->read_tf = $request->input('read_tf');
+        $requestapi->complete_tf = $request->input('complete_tf');
         if($requestapi->save()){
             return new RequestResource($requestapi);
         }
+
+        
     }
 
     /**

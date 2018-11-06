@@ -1,7 +1,7 @@
 <template>
   <v-app>
     <v-toolbar
-    color="yellow"
+    color="#1E3D5A"
     dark
     flat
   >
@@ -17,12 +17,32 @@
     <div class="container">
       <div class="row row-offcanvas row-offcanvas-right">
         <div class="col-xs-12 col-sm-8">
-                    <div v-for="item in requests" :key="item.index" class="container">
-            <v-card flat max-width="750">
+          <v-container grid-list-md>
+            <v-layout wrap>
+              <v-flex xs4>
+           <h2 class="ml-4">Requests</h2>
+          <v-card flat max-width="800" height="600" data-simplebar data-simplebar-auto-hide="false">
+            <v-card-text>
+          <div v-for="item in requests" :key="item.index">
+            <v-card flat max-width="550">
               <v-card-text>
-                 <v-layout align-center mb-3>
-                  <v-avatar size="50" color="yellow" class="mr-3"><v-icon>star</v-icon></v-avatar>
-                  <strong class="title">{{item.last_name +' '+item.first_name}}</strong>
+                 <v-layout align-center mb-1>
+                    <v-badge
+               
+                  color="success"
+                  left
+                  overlap
+                >
+                  <v-icon
+                   v-if="item.read_tf == 'Y'"
+                    slot="badge"
+                    dark
+                    small
+                  >done</v-icon>
+                  <v-avatar @click="completeRequest(item)" size="50" color="#E5EFEE" class="mr-3"><v-icon>face</v-icon></v-avatar>
+                </v-badge>
+                  
+                  <strong class="title">Request Entry No.{{item.id}}</strong>
               <v-speed-dial
                       dark
                       absolute
@@ -51,27 +71,47 @@
                         color="green"
                         slot="activator"
                       >
-                        <v-icon>edit</v-icon>
+                       <v-avatar size="40" color="teal">
+                  <span class="white--text headline">S</span>
+                </v-avatar>
                       </v-btn>
                 <v-card>
                   <v-card-title>
-                    <span class="headline">Quick Edit Announcement</span>
+                    <span class="headline">Request profile of request: {{item.id}}</span>
                   </v-card-title>
                   <v-card-text>
                         <v-flex xs12>
-                          <v-text-field v-model="item.last_name" disabled></v-text-field>
+                          <v-text-field label="Last name" v-model="item.last_name" disabled></v-text-field>
                         </v-flex>
                          <v-flex xs12>
-                           <v-text-field data-simplebar v-model="item.first_name" disabled></v-text-field>
+                           <v-text-field label="First name" v-model="item.first_name" disabled></v-text-field>
                         </v-flex>
                          <v-flex xs12>
-                           <v-text-field data-simplebar v-model="item.email" disabled></v-text-field>
+                           <v-text-field label="Middle name" v-model="item.middle_name" disabled></v-text-field>
+                        </v-flex>
+                        <v-flex xs12>
+                           <v-text-field label="Email name" v-model="item.email" disabled></v-text-field>
+                        </v-flex>
+                        <v-flex xs12>
+                           <v-text-field label="Contact number" v-model="item.contact_number" disabled></v-text-field>
+                        </v-flex>
+                        <v-flex xs12>
+                           <v-text-field label="Birth date" v-model="item.birthdate" disabled></v-text-field>
+                        </v-flex>
+                        <v-flex xs12>
+                           <v-text-field label="Gender" v-model="item.gender" disabled></v-text-field>
+                        </v-flex>
+                        <v-flex xs12>
+                           <v-text-field label="Requests" v-model="item.type_of_request" disabled></v-text-field>
+                        </v-flex>
+                         <v-flex xs12>
+                           <v-textarea label="Purpose" v-model="item.purpose" disabled></v-textarea>
                         </v-flex>
                   </v-card-text>
                   <v-card-actions>
                     <v-spacer></v-spacer>
                     <v-btn color="blue darken-1" flat @click.native="dialog2 = false">Close</v-btn>
-                    <v-btn color="blue darken-1" flat  @click.native="dialog2 = false, saveAnnouncement(item)">Save</v-btn>
+                    <v-btn color="blue darken-1" flat  @click.native="dialog2 = false, saveRequest(item)">Finish and Send</v-btn>
                   </v-card-actions>
                 </v-card>
                       </v-dialog>
@@ -80,23 +120,28 @@
                         dark
                         small
                         color="red"
-                        @click="deleteAnnouncement(item.id)"
+                        @click="deleteRequest(item.id)"
                       >
                         <v-icon>delete</v-icon>
                       </v-btn>
                     </v-speed-dial>
                  </v-layout>
-                 <p>{{item.type_of_request}}</p>
-                 <small>Posted at : {{item.created_at}}</small>
+                 <p>Requested by: {{item.last_name +' '+item.first_name}}</p>
+                
+                 <v-chip small label outline color="blue"> <small>Requested at : {{item.created_at}}</small></v-chip>
               </v-card-text>
             </v-card>
           </div>
-          <h2 class="ml-4">Announcements</h2>
-          <div v-for="item in announcements" :key="item.id" class="container">
-            <v-card flat max-width="750">
+          </v-card-text>
+          </v-card>
+          </v-flex>
+          <hr>
+          <v-flex xs8>
+          <h2 class="ml-1">Announcements</h2>
+            <v-card v-for="item in announcements" :key="item.id" flat max-width="680">
               <v-card-text>
                  <v-layout align-center mb-3>
-                  <v-avatar size="50" color="yellow" class="mr-3"><v-icon>star</v-icon></v-avatar>
+                  <v-avatar size="50" color="#E5EFEE" class="mr-3"><v-icon>star</v-icon></v-avatar>
                   <strong class="title">{{item.annc_title}}</strong>
               <v-speed-dial
                       dark
@@ -137,7 +182,7 @@
                           <v-text-field v-model="item.annc_title" required></v-text-field>
                         </v-flex>
                          <v-flex xs12>
-                           <v-textarea data-simplebar v-model="item.annc_content" required></v-textarea>
+                           <v-textarea v-model="item.annc_content" required></v-textarea>
                         </v-flex>
                   </v-card-text>
                   <v-card-actions>
@@ -159,60 +204,56 @@
                     </v-speed-dial>
                  </v-layout>
                  <p>{{item.annc_content}}</p>
-                 <small>Posted at : {{item.created_at}}</small>
+                 <v-chip small label outline color="blue"> <small>Posted at : {{item.created_at}}</small></v-chip>
               </v-card-text>
+              <hr/>
             </v-card>
-          </div>
+          
           <nav aria-label="...">
           <ul class="pager">
             <li :class="[{disabled: !pagination.prev_page_url}]"><a href="#" @click="fetchAnnouncements(pagination.prev_page_url)"><span aria-hidden="true">&larr;</span> Newer</a></li>
             <li :class="[{disabled: !pagination.next_page_url}]"><a href="#"  @click="fetchAnnouncements(pagination.next_page_url)">Older <span aria-hidden="true">&rarr;</span></a></li>
           </ul>
           </nav>
-          <hr>
-          <div class="row ml-3">
+          </v-flex>
+           <v-flex xs12>
+             <h2>Calendar and Events</h2>
+          </v-flex>
+          <v-flex xs12 sm6 md3>
+                    <v-text-field
+                    v-model="addEvent.title"
+                      label="Event name"
+                    ></v-text-field>
+          </v-flex>
+           <v-flex xs12 sm6 md3>
+                    <v-text-field
+                     v-model="addEvent.start"
+                      label="From"
+                    ></v-text-field>
+          </v-flex>
+          <h2>-</h2>
+           <v-flex xs12 sm6 md3>
+                    <v-text-field
+                     v-model="addEvent.end"
+                      label="To"
+                    ></v-text-field>
+            </v-flex>
+            <v-btn @click.prevent="saveEvent()" dark color="indigo">
+                        Add Event
+                  </v-btn>
+          <v-flex xs12>
+          <div class="row">
           <full-calendar local="en"
           :events="fcEvents"
           >
           </full-calendar>
           </div><!--/row-->
+          </v-flex>
+          </v-layout>
+          </v-container>
         </div><!--/.col-xs-12.col-sm-9-->
-        <!-- <div class="col-xs-6 col-sm-4 sidebar-offcanvas">
-          <v-card flat max-width="850">
-              <v-card-text>
-                 <v-layout align-center mb-3>
-                  <strong class="title">Request</strong>
-                 </v-layout>
-                 <div class="list-group" data-simplebar data-simplebar-auto-hide="false">
-                <div class="container col-md-12">  
-                <button v-for="item in requests"
-                :key="item.id"
-                @click="test1(item.id)" class="list-group-item">
-                {{item.last_name+' '+item.first_name}}
-                </button>
-              </div> 
-            </div>
-              </v-card-text>
-            </v-card>
-        </div> -->
          <div class="col-xs-6 col-sm-4 sidebar-offcanvas">
-           <hr>
-          <v-card flat max-width="850">
-              <v-card-text>
-                 <v-layout align-center mb-3>
-                  <strong class="title">Events</strong>
-                  <v-spacer></v-spacer>
-                   <v-btn fab dark flat color="indigo">
-                  <v-icon dark large>add_circle_outline</v-icon>
-                </v-btn>
-                 </v-layout>
-                 <div class="list-group" data-simplebar data-simplebar-auto-hide="false">
-              <button v-for="item in fcEvents"
-            :key="item.id"
-              @click="test1(item.title)" class="list-group-item"> {{item.title}}</button>
-            </div>
-              </v-card-text>
-            </v-card>
+          
         </div><!--/.sidebar-offcanvas-->
       </div><!--/row-->
     </div><!--/.container-->
@@ -224,9 +265,15 @@ import 'simplebar/dist/simplebar.css'
   export default{
     data (){
       return{
-        hover:false,
+        hover:true,
         dialog:false,
         dialog2:false,
+        addEvent:{
+          title:'',
+          event_description:'sample',
+          start:'',
+          end:''
+        },
         fcEvents:[],
         requests:[],
         announcements:[],
@@ -255,7 +302,6 @@ import 'simplebar/dist/simplebar.css'
         .then(res=> res.json())
         .then(res =>{
           this.fcEvents =res.data
-          console.log(this.fcEvents)
         })
       },
        fetchRequest(){
@@ -263,7 +309,6 @@ import 'simplebar/dist/simplebar.css'
         .then(res=> res.json())
         .then(res =>{
           this.requests =res.data
-          console.log(this.requests)
         })
       },
       test1(title){
@@ -291,6 +336,19 @@ import 'simplebar/dist/simplebar.css'
           .catch(err => console.log(err))
         }
       },
+      deleteRequest(id){
+        if(confirm('Are you sure?')){
+          fetch(`api/apirequest/${id}`,{
+            method:'delete'
+          })
+          .then(res=> res.json())
+          .then(data =>{
+            alert('Request Removed!')
+            this.fetchAnnouncements();
+          })
+          .catch(err => console.log(err))
+        }
+      },
       saveAnnouncement(item){
         fetch('api/vueannouncement',{
           method: 'put',
@@ -305,9 +363,10 @@ import 'simplebar/dist/simplebar.css'
           })
           .catch(err=>console.log(err))
       },
-      saveEvent(item){
+      saveRequest(item){
+        item.read_tf='Y'
         fetch('api/apirequest',{
-          method: 'post',
+          method: 'put',
           body: JSON.stringify(item),
           headers:{
             'content-type':'application/json'
@@ -315,7 +374,40 @@ import 'simplebar/dist/simplebar.css'
         })
           .then(res=>res.json())
           .then(data =>{
+          })
+          .catch(err=>console.log(err))
+      },
+      completeRequest(item){
+        item.complete_tf='Y'
+        fetch('api/apirequest',{
+          method: 'put',
+          body: JSON.stringify(item),
+          headers:{
+            'content-type':'application/json'
+          }
+        })
+          .then(res=>res.json())
+          .then(data =>{
+            alert('A message was sent!')
+          })
+          .catch(err=>console.log(err))
+      },
+      saveEvent(){
+        fetch('api/event',{
+          method: 'post',
+          body: JSON.stringify(this.addEvent),
+          headers:{
+            'content-type':'application/json'
+          }
+        })
+          .then(res=>res.json())
+          .then(data =>{
+            this.addEvent.title=''
+            this.addEvent.event_description=''
+            this.addEvent.start=''
+            this.addEvent.end=''
             alert('Event Added')
+            this.fetchEvents()
           })
           .catch(err=>console.log(err))
       }
@@ -325,6 +417,9 @@ import 'simplebar/dist/simplebar.css'
 <style>
   .list-group{
     max-height: 200px;
+}
+  .ovr2{
+    overflow-y: auto;
 }
 [data-simplebar]{
   overflow-y: auto;

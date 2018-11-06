@@ -38,6 +38,7 @@ class EventController extends Controller
         $event->event_description = $request->input('event_description');
         $event->start = $request->input('start');
         $event->end = $request->input('end');
+        
         if($event->save()){
             return new EventResource($event);
         }

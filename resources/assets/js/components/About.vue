@@ -26,15 +26,23 @@
       years: [
         {
           color: 'cyan',
-          year: '1960'
+          year: '1920',
+          text:`During American period they build the colony at Cotobato. This colony was built
+                in order to give service to the people who don't have their own land in Luzon and Visayas. 
+                So this is colony 9.`
         },
         {
           color: 'green',
-          year: '1970'
+          year: '1965',
+          text:`President Diosdado Macapagal release an executive order No.113, for building the Maasim as one of the regular
+                municipality and one the barangay of incapsulated with it is barangay Poblacion. Upon building the municipality of Maasim
+                through EO N0.113. Vice President Emmanuel Pelaez the rights of President Macapagal to the highest court and he stated that
+                the President does not have the power but only the congress.`
         },
         {
           color: 'pink',
-          year: '1980'
+          year: 'January 27,1969',
+          text:`Congressman James L. Chiongbian, one of the representative from South Cotabato, he passed an ordinance in the congress `
         },
         {
           color: 'amber',
@@ -42,7 +50,8 @@
         },
         {
           color: 'orange',
-          year: '2000'
+          year: '2000',
+          text:``
         }
       ]
     })

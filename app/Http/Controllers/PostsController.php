@@ -176,7 +176,7 @@ class PostsController extends Controller
         //
         $post = Post::find($id);
 
-        if(auth()->user()->id !==$post->user_id){
+        if(auth()->user()->id !== $post->user_id){
             return redirect('/announcements')->with('error', 'Unauthorize Page');
         }
 

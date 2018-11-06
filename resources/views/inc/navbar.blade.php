@@ -25,8 +25,12 @@
             <ul class="nav navbar-nav">
                 <li><a href="/">Home</a></li>
                 <li><a href="/requests">Public Assistance Center</a></li>
-                <li><a href="/about">About</a></li>
                 <li><a href="/announcements">Anouncement</a></li>
+                <li><a href="/about">About</a></li>    
+              </ul>
+              @else
+              <ul class="nav navbar-nav">
+              <li class="navbar-brand"> <small>Admin's page</small></li>
               </ul>
               @endif
             <!-- Right Side Of Navbar -->
@@ -40,7 +44,6 @@
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
                             <span class="glyphicon glyphicon-user"></span> {{ Auth::user()->name }} <span class="caret"></span>
                         </a>
-
                         <ul class="dropdown-menu" role="menu">
                             <li><a href="/dashboard">Dashboard</a></li>
                             <li><a href="/announcements/create">Announcement <sup><span class="glyphicon glyphicon-plus"></span></sup></a></li>
