@@ -12,9 +12,9 @@
         v-text="year.year"
       ></span>
       <div class="py-3">
-        <h2 :class="`headline font-weight-light mb-3 ${year.color}--text`">Lorem ipsum</h2>
+        <h2 :class="`headline font-weight-light mb-3 ${year.color}--text`">The year that we rembered...</h2>
         <div>
-          Lorem ipsum dolor sit amet, no nam oblique veritus. Commune scaevola imperdiet nec ut, sed euismod convenire principes at. Est et nobis iisque percipit, an vim zril disputando voluptatibus, vix an salutandi sententiae.
+          {{year.text}}
         </div>
       </div>
     </v-timeline-item>
@@ -32,6 +32,12 @@
                 So this is colony 9.`
         },
         {
+          color: 'red',
+          year: '1961',
+          text:` Miss Kumala Basa a muslim, was rape by a fellow Muslim. After that incident, the suspect was seize and arrested in accordance to the victims statement. Right away, Felipe Uy make an action, a local Tenyente Del Bario in Poblacion. He arrested the suspect
+          and put the suspect behind bars. in the City of Kiamba because on that day Maasim was under the City Kiamba.`
+        },
+        {
           color: 'green',
           year: '1965',
           text:`President Diosdado Macapagal release an executive order No.113, for building the Maasim as one of the regular
@@ -40,18 +46,16 @@
                 the President does not have the power but only the congress.`
         },
         {
+          color: 'red',
+          year: '1967',
+          text:` Miss Kumala Basa a muslim, was rape by a fellow Muslim. After that incident, the suspect was seize and arrested in accordance to the victims statement. Right away, Felipe Uy make an action, a local Tenyente Del Bario in Poblacion. He arrested the suspect
+          and put the suspect behind bars. in the City of Kiamba because on that day Maasim was under the City Kiamba.`
+        },
+        {
           color: 'pink',
-          year: 'January 27,1969',
-          text:`Congressman James L. Chiongbian, one of the representative from South Cotabato, he passed an ordinance in the congress `
-        },
-        {
-          color: 'amber',
-          year: '1990'
-        },
-        {
-          color: 'orange',
-          year: '2000',
-          text:``
+          year: '1969',
+          text:`Congressman James L. Chiongbian, one of the representative from South Cotabato, passed an ordinance to the Congress on the creation of Municipality of Maasim. After the concise investigation this ordinance was approved on June 21, 1969 through the Republic Act No. 5866
+                and with that the return of Barangay Poblacion.`
         }
       ]
     })

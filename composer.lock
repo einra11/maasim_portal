@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "184ef8afe6237738dea5981dc9c1ee8a",
+    "content-hash": "4904dd24c5ae6e40369cc16b2812c6b3",
     "packages": [
         {
             "name": "dnoegel/php-xdg-base-dir",
@@ -262,6 +262,33 @@
                 "parser"
             ],
             "time": "2018-03-08T01:11:30+00:00"
+        },
+        {
+            "name": "globelabs/globe-connect-php",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/globelabs/globe-connect-php.git",
+                "reference": "4be747275d91684f3825e1cfc6797102cefd317b"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/globelabs/globe-connect-php/zipball/4be747275d91684f3825e1cfc6797102cefd317b",
+                "reference": "4be747275d91684f3825e1cfc6797102cefd317b",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.0.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Globe\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "description": "Globe Api",
+            "time": "2018-03-23T14:38:51+00:00"
         },
         {
             "name": "jakub-onderka/php-console-color",
@@ -4042,7 +4069,9 @@
     ],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": [],
+    "stability-flags": {
+        "globelabs/globe-connect-php": 20
+    },
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {

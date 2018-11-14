@@ -228,14 +228,14 @@
            <v-flex xs12 sm6 md3>
                     <v-text-field
                      v-model="addEvent.start"
-                      label="From"
+                      label="Start YYYY-MM-DD"
                     ></v-text-field>
           </v-flex>
           <h2>-</h2>
            <v-flex xs12 sm6 md3>
                     <v-text-field
                      v-model="addEvent.end"
-                      label="To"
+                      label="End YYYY-MM-DD"
                     ></v-text-field>
             </v-flex>
             <v-btn @click.prevent="saveEvent()" dark color="indigo">
@@ -249,12 +249,45 @@
           </full-calendar>
           </div><!--/row-->
           </v-flex>
+          <v-flex xs11>
+            <h2>Request Reports</h2>
+            <v-text-field
+              v-model="search"
+              append-icon="search"
+              label="Search keywords"
+              single-line
+              hide-details
+            ></v-text-field>
+            <v-data-table
+              :headers="headers"
+              :items="requests"
+              :search="search"
+            >
+              <template slot="items" slot-scope="props">
+                <td>{{ props.item.id }}</td>
+                <td class="text-xs-right">{{ props.item.last_name }}</td>
+                <td class="text-xs-right">{{ props.item.first_name }}</td>
+                <td class="text-xs-right">{{ props.item.middle_name }}</td>
+                <td class="text-xs-right">{{ props.item.contact_number }}</td>
+                <td class="text-xs-right">{{ props.item.created_at }}</td>
+                <td class="text-xs-right">{{ props.item.type_of_request }}</td>
+              </template>
+            </v-data-table>
+      <v-tooltip bottom>
+      <v-btn
+        slot="activator"
+        color="primary"
+        dark
+        @click="printme()"
+      >
+        <v-icon>print</v-icon>
+      </v-btn>
+      <span>Print Report</span>
+    </v-tooltip>
+          </v-flex>
           </v-layout>
           </v-container>
         </div><!--/.col-xs-12.col-sm-9-->
-         <div class="col-xs-6 col-sm-4 sidebar-offcanvas">
-          
-        </div><!--/.sidebar-offcanvas-->
       </div><!--/row-->
     </div><!--/.container-->
   </v-app>
@@ -262,9 +295,30 @@
 <script>
 import simplebar from 'simplebar'
 import 'simplebar/dist/simplebar.css'
+import * as jsPDF from 'jspdf'
+import * as jsPDFTable from 'jspdf-autotable'
   export default{
     data (){
       return{
+        search:'',
+        headers: [
+          {
+            text: 'Request ID',
+            align: 'left',
+            value: 'id',
+            sortable: false,
+          },
+          { text: 'Last name',sortable: false, value: 'last_name' },
+          { text: 'First name',sortable: false, value: 'first_name' },
+          { text: 'Middle name',sortable: false, value: 'middle_name' },
+          { text: 'Contact number',sortable: false, value: 'contact_number' },
+          { text: 'Requested at',sortable: false, align: 'right', value: 'created_at' },
+          { text: 'Requested',
+          align: 'right',
+          value: 'type_of_request',
+          sortable: false,
+           }
+        ],
         hover:true,
         dialog:false,
         dialog2:false,
@@ -286,6 +340,38 @@ import 'simplebar/dist/simplebar.css'
       this.fetchRequest();
     },
     methods:{
+      printme(){
+        var vm = this
+        var columns =[
+          {title:'ID', dataKey:"id"},
+          {title:'Last Name', dataKey:"last_name"},
+          {title:'First Name', dataKey:"first_name"},
+          {title:'Middle Name', dataKey:"middle_name"},
+          {title:'Contact Number', dataKey:"contact_number"},
+          {title:'Requested At', dataKey:"created_at"},
+          {title:'Requested', dataKey:"type_of_request"},
+        ]
+        var doc =new jsPDF('p', 'pt')
+        // doc.autoTable(columns, vm.requests)
+        doc.autoTable(columns, vm.requests, {
+          styles:{
+            overflow:'linebreak',
+            overflowColumns:false
+          },  
+          columnStyles: {
+            id: {columnWidth: 30},
+            // last_name: {columnWidth: 70},
+            // first_name: {columnWidth: 70},
+            // middle_name: {columnWidth: 70},
+            type_of_request: {columnWidth: 80},
+          },
+          margin: {top: 60},
+          addPageContent: function(data) {
+            doc.text("Request Report", 40, 30);
+          }
+      });
+        doc.save('reports.pdf')
+      },
       fetchAnnouncements(page_url){
         let vm = this;
         page_url = page_url|| '/api/vueannouncements'
@@ -344,7 +430,7 @@ import 'simplebar/dist/simplebar.css'
           .then(res=> res.json())
           .then(data =>{
             alert('Request Removed!')
-            this.fetchAnnouncements();
+            this.fetchRequest();
           })
           .catch(err => console.log(err))
         }
